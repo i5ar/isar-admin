@@ -2,9 +2,9 @@
 *.png
 
 # Fonts
+*.otf
 *.eot
 *.svg
 *.ttf
 *.woff
-
 
