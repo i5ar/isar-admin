@@ -3,8 +3,7 @@
 #############
 
 # Images
-logo-login.png
-images/
+*.png
 
 # Fonts
 *.eot
