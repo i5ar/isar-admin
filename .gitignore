@@ -1,0 +1,14 @@
+#############
+## Images
+#############
+
+# Images
+*.png
+
+# Fonts
+*.eot
+*.svg
+*.ttf
+*.woff
+
+
