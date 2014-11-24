@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: iSar Admin
-Plugin URI: http://isarch.it/freebies/isartools/
+Plugin URI: https://github.com/i5ar/isadmin
 Description: Custom Admin styles and contents. Access to plug-in panel from the Setting sub-menu
 Version: 1.2
 Author: iSarDesign
