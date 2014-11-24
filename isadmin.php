@@ -19,7 +19,6 @@ class admin_load_language {
 	}
 }
 $admin_load_language = new admin_load_language;
-
 /**
  * Setting Panel
  */
@@ -37,50 +36,44 @@ function ca_options() {
 	</div>
 	<?php
 }
-
 /**
  * Remove the WordPress Logo from the WordPress Admin Bar
- 
 add_action( 'wp_before_admin_bar_render', 'remove_wp_logo' );  
 function remove_wp_logo() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('wp-logo');  
 }  
  */
- 
+
 /** 
  * Remove the Howdy menu from the WordPress Admin Bar
- 
 add_action( 'wp_before_admin_bar_render', 'remove_my_account' );
 function remove_my_account() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu( 'my-account' );  
 }  
  */
- 
+
 /**
  * Remove the Comment Bubble from the WordPress Admin Bar
- 
 add_action( 'wp_before_admin_bar_render', 'remove_comment_bubble' ); 
 function remove_comment_bubble() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('comments');  
 }  
  */
- 
+
 /**
  * Disable the current Site Name menu in the Admin Bar
- 
 add_action( 'wp_before_admin_bar_render', 'remove_this_site' );  
 function remove_this_site() {
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('site-name');  
 }  
  */
- 
+
 /**
  * Disable the Add New Content menu or sub-items
- 
 add_action( 'wp_before_admin_bar_render', 'custom_admin_bar_edit' );
 function custom_admin_bar_edit() {
     global $wp_admin_bar;
@@ -97,7 +90,6 @@ function custom_admin_bar_edit() {
 
 /**
  * Remove meta box from Wordpress Dashboard for all users
- 
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
 function remove_dashboard_widgets() {
     // Globalize the metaboxes array, this holds all the widgets for wp-admin
@@ -110,7 +102,6 @@ function remove_dashboard_widgets() {
 
 /**
  * Disable the Search Icon and Input within the Admin Bar 
-
 function disable_bar_search() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('search');  
@@ -120,14 +111,13 @@ add_action( 'wp_before_admin_bar_render', 'disable_bar_search' );
 
 /**
  * Disable the Update Menus 
-
 function disable_bar_updates() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('updates');  
 }  
 add_action( 'wp_before_admin_bar_render', 'disable_bar_updates' ); 
  */
- 
+
 /**
  * Add a dropdown menu & link that opens in a new window 
  */
