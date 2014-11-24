@@ -1,7 +1,10 @@
 # Images
-*.png
+images/
+logo-login.png
 
 # Fonts
+genericons/
+fonts/
 *.otf
 *.eot
 *.svg
