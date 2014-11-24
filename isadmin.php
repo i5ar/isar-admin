@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: iSar Admin
-Plugin URI: http://codex.wordpress.org/Writing_a_Plugin
+Plugin URI: http://isarch.it/freebies/isartools/
 Description: Custom Admin styles and contents. Access to plug-in panel from the Setting sub-menu
 Version: 1.2
 Author: iSarDesign
-Author URI: http://
+Author URI: http://isarch.it/about-me/
 */
 /**
  * Languages
@@ -19,6 +19,7 @@ class admin_load_language {
 	}
 }
 $admin_load_language = new admin_load_language;
+
 /**
  * Setting Panel
  */
@@ -36,49 +37,51 @@ function ca_options() {
 	</div>
 	<?php
 }
+
 /**
  * Remove the WordPress Logo from the WordPress Admin Bar
  
+add_action( 'wp_before_admin_bar_render', 'remove_wp_logo' );  
 function remove_wp_logo() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('wp-logo');  
 }  
-add_action( 'wp_before_admin_bar_render', 'remove_wp_logo' );  
  */
  
 /** 
  * Remove the Howdy menu from the WordPress Admin Bar
  
+add_action( 'wp_before_admin_bar_render', 'remove_my_account' );
 function remove_my_account() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu( 'my-account' );  
 }  
-add_action( 'wp_before_admin_bar_render', 'remove_my_account' );
  */
  
 /**
  * Remove the Comment Bubble from the WordPress Admin Bar
  
+add_action( 'wp_before_admin_bar_render', 'remove_comment_bubble' ); 
 function remove_comment_bubble() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('comments');  
 }  
-add_action( 'wp_before_admin_bar_render', 'remove_comment_bubble' ); 
  */
  
 /**
  * Disable the current Site Name menu in the Admin Bar
  
+add_action( 'wp_before_admin_bar_render', 'remove_this_site' );  
 function remove_this_site() {
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('site-name');  
 }  
-add_action( 'wp_before_admin_bar_render', 'remove_this_site' );  
  */
  
 /**
  * Disable the Add New Content menu or sub-items
-
+ 
+add_action( 'wp_before_admin_bar_render', 'custom_admin_bar_edit' );
 function custom_admin_bar_edit() {
     global $wp_admin_bar;
 	$wp_admin_bar->remove_menu('new-content');	// This removes the complete menu “Add New”. You will not require the below “remove_menu” if you using this line.
@@ -90,12 +93,12 @@ function custom_admin_bar_edit() {
 	$wp_admin_bar->remove_menu('new-theme');	// This (when used individually with other “remove menu” lines removed) will hide the menu item “Theme”.
 	$wp_admin_bar->remove_menu('new-plugin');	// This (when used individually with other “remove menu” lines removed) will hide the menu item “Plugin”.
 }
-add_action( 'wp_before_admin_bar_render', 'custom_admin_bar_edit' );
  */ 
 
 /**
  * Remove meta box from Wordpress Dashboard for all users
-
+ 
+add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
 function remove_dashboard_widgets() {
     // Globalize the metaboxes array, this holds all the widgets for wp-admin
     global $wp_meta_boxes;
@@ -103,7 +106,6 @@ function remove_dashboard_widgets() {
     unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
     unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
 }
-add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
  */
 
 /**
@@ -131,58 +133,113 @@ add_action( 'wp_before_admin_bar_render', 'disable_bar_updates' );
  */
 add_action( 'admin_bar_menu', 'add_toolbar_items', 15);												
 function add_toolbar_items($admin_bar){
-	$admin_bar->add_menu( array(
-		'id'    => 'my-item',
-		'title' => 'Edilportale',
-		'meta'  => array(
-			'title' => __('Edilportale'),			
-		),
-	));
-	$admin_bar->add_menu( array(
-		'id'    => 'my-sub-item',
-		'parent' => 'my-item',
-		'title' => 'edilportale',
-		'href'  => 'http://www.edilportale.com/',
-		'meta'  => array(
-			'title' => __('My Sub Menu Item'),
-			'target' => '_blank',
-			'class' => 'my_menu_item_class'
-		),
-	));
-	$admin_bar->add_menu( array(
-		'id'    => 'my-second-sub-item',
-		'parent' => 'my-item',
-		'title' => 'archiportale',
-		'href'  => 'http://www.archiportale.com/',
-		'meta'  => array(
-			'title' => __('My Second Sub Menu Item'),
-			'target' => '_blank',
-			'class' => 'my_menu_item_class'
-		),
-	));
-	$admin_bar->add_menu( array(
-		'id'    => 'my-third-sub-item',
-		'parent' => 'my-item',
-		'title' => 'archilovers',
-		'href'  => 'http://www.archilovers.com/',
-		'meta'  => array(
-			'title' => __('My Third Sub Menu Item'),
-			'target' => '_blank',
-			'class' => 'my_menu_item_class'
-		),
-	));
-	$admin_bar->add_menu( array(
-		'id'    => 'my-fourth-sub-item',
-		'parent' => 'my-item',
-		'title' => 'archiproducts',
-		'href'  => 'http://www.archiproducts.com/',
-		'meta'  => array(
-			'title' => __('My Fourth Sub Menu Item'),
-			'target' => '_blank',
-			'class' => 'my_menu_item_class'
-		),
-	));
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-item',
+			'title' => 'Portals',
+			'meta'  => array(
+				'title' => __('Portals')
+			),
+		)
+	);
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-sub-item',
+			'parent' => 'my-item',
+			'title' => 'edilportale',
+			'href'  => 'http://www.edilportale.com/',
+			'meta'  => array(
+				'title' => __('Edilportale'),
+				'target' => '_blank'
+			),
+		)
+	);
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-second-sub-item',
+			'parent' => 'my-item',
+			'title' => 'archiportale',
+			'href'  => 'http://www.archiportale.com/',
+			'meta'  => array(
+				'title' => __('Edilportale archiportale'),
+				'target' => '_blank'
+			),
+		)
+	);
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-third-sub-item',
+			'parent' => 'my-item',
+			'title' => 'archilovers',
+			'href'  => 'http://www.archilovers.com/',
+			'meta'  => array(
+				'title' => __('Edilportale archilovers'),
+				'target' => '_blank'
+			),
+		)
+	);
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-fourth-sub-item',
+			'parent' => 'my-item',
+			'title' => 'archiproducts',
+			'href'  => 'http://www.archiproducts.com/',
+			'meta'  => array(
+				'title' => __('Edilportale archiproducts'),
+				'target' => '_blank'
+			),
+		)
+	);
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-fiveth-sub-item',
+			'parent' => 'my-item',
+			'title' => 'architetto.info',
+			'href'  => 'ttp://www.architetto.info/',
+			'meta'  => array(
+				'title' => __('Wolters Kluwer Italia'),
+				'target' => '_blank'
+			),
+		)
+	);
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-fiveth-sub-item',
+			'parent' => 'my-item',
+			'title' => 'architetto.info',
+			'href'  => 'http://www.architetto.info/',
+			'meta'  => array(
+				'title' => __('Wolters Kluwer Italia'),
+				'target' => '_blank'
+			),
+		)
+	);
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-sixth-sub-item',
+			'parent' => 'my-item',
+			'title' => 'professionearchitetto',
+			'href'  => 'http://www.professionearchitetto.it/',
+			'meta'  => array(
+				'title' => __('Luigi Mauro Catenacci'),
+				'target' => '_blank'
+			),
+		)
+	);
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'my-seventh-sub-item',
+			'parent' => 'my-item',
+			'title' => 'europaconcorsi',
+			'href'  => 'http://europaconcorsi.com/',
+			'meta'  => array(
+				'title' => __('Europaconcorsi'),
+				'target' => '_blank'
+			),
+		)
+	);
 }
+
 /**
  * Add a simple menu & link that opens in a new window 
  */
@@ -191,11 +248,16 @@ function first_custom_adminbar_menu( $meta = TRUE ) {
     global $wp_admin_bar;  
         if ( !is_user_logged_in() ) { return; }  
         if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }  
-    $wp_admin_bar->add_menu( array(  
-        'id' => 'custom_menu',  
-        'title' => __( 'archdaily', 'isadmin' ),
-        'href' => 'http://www.archdaily.com/',  
-        'meta'  => array( target => '_blank' ) )  
+    $wp_admin_bar->add_menu(
+		array(  
+			'id' => 'custom_menu',
+			'title' => __( 'CNAPPC', 'isadmin' ),
+			'href' => 'http://www.cnappc.it/', 
+			'meta'  => array(
+				'title' => __('Consiglio Nazionale Architetti'),
+				'target' => '_blank'
+			)
+		)
     );  
 }
 // Add second simple menu & link that opens in a new window 
@@ -204,40 +266,19 @@ function second_custom_adminbar_menu( $meta = TRUE ) {
     global $wp_admin_bar;  
         if ( !is_user_logged_in() ) { return; }  
         if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }  
-    $wp_admin_bar->add_menu( array(
-        'id' => 'second_custom_menu',
-        'title' => __( 'professionearchitetto', 'isadmin' ),
-        'href' => 'http://www.professionearchitetto.it/',
-		
-        'meta'  => array( target => '_blank' ) )
+    $wp_admin_bar->add_menu(
+		array(
+			'id' => 'second_custom_menu',
+			'title' => __( 'OAPPC', 'isadmin' ),
+			'href' => 'http://www.architettipescara.it/',
+			'meta'  => array(
+				'title' => __('OAPPC della Provincia di Pescara'),
+				'target' => '_blank'
+			)
+		)
     );
 }
-// Add third simple menu & link that opens in a new window
-add_action( 'admin_bar_menu', 'third_custom_adminbar_menu', 15 );
-function third_custom_adminbar_menu( $meta = TRUE ) {  
-    global $wp_admin_bar;  
-        if ( !is_user_logged_in() ) { return; }  
-        if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }  
-    $wp_admin_bar->add_menu( array(
-        'id' => 'third_custom_menu',
-        'title' => __( 'europaconcorsi', 'isadmin' ),
-        'href' => 'http://europaconcorsi.com/',
-        'meta'  => array( target => '_blank' ) )
-    );
-}  
-// Add fourth simple menu & link that opens in a new window
-add_action( 'admin_bar_menu', 'fourth_custom_adminbar_menu', 15 ); 
-function fourth_custom_adminbar_menu( $meta = TRUE ) {  
-    global $wp_admin_bar;  
-        if ( !is_user_logged_in() ) { return; }  
-        if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }  
-    $wp_admin_bar->add_menu( array(
-        'id' => 'fourth_custom_menu',
-        'title' => __( 'architetto.info', 'isadmin' ),
-        'href' => 'http://www.architetto.info/',
-        'meta'  => array( target => '_blank' ) )
-    );
-}
+
 /**
  * Remove the Admin Bar from the Front-end
  */
@@ -247,40 +288,40 @@ add_filter( 'show_admin_bar' , 'isar_function_admin_bar');
 /**
  * Admin footer modification
  */
+add_filter('admin_footer_text', 'remove_footer_admin');
 function remove_footer_admin () {
     echo '<span id="footer-thankyou">Developed by <a href="' . get_bloginfo( 'wpurl' ) . '/threex.html" target="_blank">iSarDesign</a></span>';
 }
-add_filter('admin_footer_text', 'remove_footer_admin');
+
 /**
  * Add custom admin login header logo
  */
+add_action('login_head', 'isarch_custom_login_logo');
 function isarch_custom_login_logo() {
 //	echo '<style  type="text/css"> h1 a {  background-image:url(' . get_stylesheet_directory_uri() . '/images/logo-login.png)  !important; } </style>';
 	echo '<style  type="text/css"> h1 a {  background-image:url(' . plugin_dir_url('isadmin') . 'isadmin/images/logo-login.png)  !important; } </style>';
 }
-add_action('login_head', 'isarch_custom_login_logo');
 
 /**
  * Add custom Login Page styles - http://premium.wpmudev.org/blog/create-a-custom-wordpress-login-page/
  */
+add_action('login_head', 'isarch_custom_login_styles');
 function isarch_custom_login_styles() {
 //	echo '<link rel="stylesheet" type="text/css" href="' . get_stylesheet_directory_uri() . '/style-login.css" />';
 	echo '<link rel="stylesheet" type="text/css" href="' . plugin_dir_url('isadmin') . 'isadmin/css/style-login.css" />';
 }
-add_action('login_head', 'isarch_custom_login_styles');
 
 /**
  * Change the Login Logo URL - http://premium.wpmudev.org/blog/create-a-custom-wordpress-login-page/
  */
-function isarch_login_logo_url() {
-return get_bloginfo( 'url' );
-}
 add_filter( 'login_headerurl', 'isarch_login_logo_url' );
-
+function isarch_login_logo_url() {
+	return get_bloginfo( 'url' );
+}
+add_filter( 'login_headertitle', 'isarch_login_logo_url_title' );
 function isarch_login_logo_url_title() {
 return 'Architetto Penne Pescara';
 }
-add_filter( 'login_headertitle', 'isarch_login_logo_url_title' );
 
 /**
  * Add another link on the wp-login page - http://wordpress.org/support/topic/adding-another-link-on-the-wp-login-page
