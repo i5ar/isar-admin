@@ -31,13 +31,9 @@ function ca_options() {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	} ?>
 	<div class="wrap">
-        <p>
-        <?php echo __( 'Here is where the form would go if I actually had options.', 'isadmin' ); ?>
-        </p>
-        <p>
-        <?php echo __( 'Using this option you will make a fortune!', 'isadmin' ); ?>
-        </p>
-    </div>
+		<p><?php echo __( 'Here is where the form would go if I actually had options.', 'isadmin' ); ?></p>
+		<p><?php echo __( 'Using this option you will make a fortune!', 'isadmin' ); ?></p>
+	</div>
 	<?php
 }
 /**
@@ -49,7 +45,7 @@ function remove_wp_logo() {
 }  
 add_action( 'wp_before_admin_bar_render', 'remove_wp_logo' );  
  */
-
+ 
 /** 
  * Remove the Howdy menu from the WordPress Admin Bar
  
@@ -58,8 +54,8 @@ function remove_my_account() {
     $wp_admin_bar->remove_menu( 'my-account' );  
 }  
 add_action( 'wp_before_admin_bar_render', 'remove_my_account' );
- */  
-
+ */
+ 
 /**
  * Remove the Comment Bubble from the WordPress Admin Bar
  
@@ -68,8 +64,8 @@ function remove_comment_bubble() {
     $wp_admin_bar->remove_menu('comments');  
 }  
 add_action( 'wp_before_admin_bar_render', 'remove_comment_bubble' ); 
- */  
-
+ */
+ 
 /**
  * Disable the current Site Name menu in the Admin Bar
  
@@ -78,8 +74,8 @@ function remove_this_site() {
     $wp_admin_bar->remove_menu('site-name');  
 }  
 add_action( 'wp_before_admin_bar_render', 'remove_this_site' );  
- */  
-
+ */
+ 
 /**
  * Disable the Add New Content menu or sub-items
 
@@ -128,48 +124,96 @@ function disable_bar_updates() {
     $wp_admin_bar->remove_menu('updates');  
 }  
 add_action( 'wp_before_admin_bar_render', 'disable_bar_updates' ); 
- */  
-
+ */
+ 
+/**
+ * Add a dropdown menu & link that opens in a new window 
+ */
+add_action( 'admin_bar_menu', 'add_toolbar_items', 15);												
+function add_toolbar_items($admin_bar){
+	$admin_bar->add_menu( array(
+		'id'    => 'my-item',
+		'title' => 'Edilportale',
+		'meta'  => array(
+			'title' => __('Edilportale'),			
+		),
+	));
+	$admin_bar->add_menu( array(
+		'id'    => 'my-sub-item',
+		'parent' => 'my-item',
+		'title' => 'edilportale',
+		'href'  => 'http://www.edilportale.com/',
+		'meta'  => array(
+			'title' => __('My Sub Menu Item'),
+			'target' => '_blank',
+			'class' => 'my_menu_item_class'
+		),
+	));
+	$admin_bar->add_menu( array(
+		'id'    => 'my-second-sub-item',
+		'parent' => 'my-item',
+		'title' => 'archiportale',
+		'href'  => 'http://www.archiportale.com/',
+		'meta'  => array(
+			'title' => __('My Second Sub Menu Item'),
+			'target' => '_blank',
+			'class' => 'my_menu_item_class'
+		),
+	));
+	$admin_bar->add_menu( array(
+		'id'    => 'my-third-sub-item',
+		'parent' => 'my-item',
+		'title' => 'archilovers',
+		'href'  => 'http://www.archilovers.com/',
+		'meta'  => array(
+			'title' => __('My Third Sub Menu Item'),
+			'target' => '_blank',
+			'class' => 'my_menu_item_class'
+		),
+	));
+	$admin_bar->add_menu( array(
+		'id'    => 'my-fourth-sub-item',
+		'parent' => 'my-item',
+		'title' => 'archiproducts',
+		'href'  => 'http://www.archiproducts.com/',
+		'meta'  => array(
+			'title' => __('My Fourth Sub Menu Item'),
+			'target' => '_blank',
+			'class' => 'my_menu_item_class'
+		),
+	));
+}
 /**
  * Add a simple menu & link that opens in a new window 
- */ 
+ */
+add_action( 'admin_bar_menu', 'first_custom_adminbar_menu', 15 ); // 10 before logo, 15 between logo and site, 25 after site, 100 end menu
 function first_custom_adminbar_menu( $meta = TRUE ) {  
     global $wp_admin_bar;  
         if ( !is_user_logged_in() ) { return; }  
         if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }  
     $wp_admin_bar->add_menu( array(  
         'id' => 'custom_menu',  
-        'title' => __( 'archilovers', 'isadmin' ),
-        'href' => 'http://www.archilovers.com/',  
+        'title' => __( 'archdaily', 'isadmin' ),
+        'href' => 'http://www.archdaily.com/',  
         'meta'  => array( target => '_blank' ) )  
     );  
-}  
-add_action( 'admin_bar_menu', 'first_custom_adminbar_menu', 15 );
-														//	10 Before the WP Logo
-														//	15 Between the logo and My Sites
-														//	25 After My Sites menu
-														//	100 End of menu
- 
-/**
- * Add another simple menu & link that opens in a new window 
- */ 
+}
+// Add second simple menu & link that opens in a new window 
+add_action( 'admin_bar_menu', 'second_custom_adminbar_menu', 15 );
 function second_custom_adminbar_menu( $meta = TRUE ) {  
     global $wp_admin_bar;  
         if ( !is_user_logged_in() ) { return; }  
         if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }  
     $wp_admin_bar->add_menu( array(
         'id' => 'second_custom_menu',
-        'title' => __( 'edilportale', 'isadmin' ),
-        'href' => 'http://www.edilportale.com/',
+        'title' => __( 'professionearchitetto', 'isadmin' ),
+        'href' => 'http://www.professionearchitetto.it/',
 		
         'meta'  => array( target => '_blank' ) )
     );
-}  
-add_action( 'admin_bar_menu', 'second_custom_adminbar_menu', 15 );
-
-/**
- * Add another simple menu & link that opens in a new window 
- */ 
+}
+// Add third simple menu & link that opens in a new window
+add_action( 'admin_bar_menu', 'third_custom_adminbar_menu', 15 );
 function third_custom_adminbar_menu( $meta = TRUE ) {  
     global $wp_admin_bar;  
         if ( !is_user_logged_in() ) { return; }  
@@ -181,8 +225,19 @@ function third_custom_adminbar_menu( $meta = TRUE ) {
         'meta'  => array( target => '_blank' ) )
     );
 }  
-add_action( 'admin_bar_menu', 'third_custom_adminbar_menu', 15 );
-
+// Add fourth simple menu & link that opens in a new window
+add_action( 'admin_bar_menu', 'fourth_custom_adminbar_menu', 15 ); 
+function fourth_custom_adminbar_menu( $meta = TRUE ) {  
+    global $wp_admin_bar;  
+        if ( !is_user_logged_in() ) { return; }  
+        if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }  
+    $wp_admin_bar->add_menu( array(
+        'id' => 'fourth_custom_menu',
+        'title' => __( 'architetto.info', 'isadmin' ),
+        'href' => 'http://www.architetto.info/',
+        'meta'  => array( target => '_blank' ) )
+    );
+}
 /**
  * Remove the Admin Bar from the Front-end
  */
@@ -196,7 +251,6 @@ function remove_footer_admin () {
     echo '<span id="footer-thankyou">Developed by <a href="' . get_bloginfo( 'wpurl' ) . '/threex.html" target="_blank">iSarDesign</a></span>';
 }
 add_filter('admin_footer_text', 'remove_footer_admin');
-
 /**
  * Add custom admin login header logo
  */
@@ -214,9 +268,6 @@ function isarch_custom_login_styles() {
 	echo '<link rel="stylesheet" type="text/css" href="' . plugin_dir_url('isadmin') . 'isadmin/css/style-login.css" />';
 }
 add_action('login_head', 'isarch_custom_login_styles');
-
-
-
 
 /**
  * Change the Login Logo URL - http://premium.wpmudev.org/blog/create-a-custom-wordpress-login-page/
