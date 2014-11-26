@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: iSar Admin
-Plugin URI: https://github.com/i5ar/isadmin
+Plugin URI: https://github.com/i5ar/isar-custom-admin
 Description: Custom Admin styles and contents. Access to plug-in panel from the Setting sub-menu
 Version: 1.2
 Author: iSarDesign
@@ -15,7 +15,7 @@ class admin_load_language {
 		add_action( 'init', array( $this, 'load_my_transl' ) );
 	}
 	public function load_my_transl() {
-		load_plugin_textdomain( 'isadmin', false, basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'isar-custom-admin', false, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 }
 $admin_load_language = new admin_load_language;
@@ -31,8 +31,8 @@ function ca_options() {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	} ?>
 	<div class="wrap">
-		<p><?php echo __( 'Here is where the form would go if I actually had options.', 'isadmin' ); ?></p>
-		<p><?php echo __( 'Using this option you will make a fortune!', 'isadmin' ); ?></p>
+		<p><?php echo __( 'Here is where the form would go if I actually had options.', 'isar-custom-admin' ); ?></p>
+		<p><?php echo __( 'Using this option you will make a fortune!', 'isar-custom-admin' ); ?></p>
 	</div>
 	<?php
 }
@@ -241,7 +241,7 @@ function first_custom_adminbar_menu( $meta = TRUE ) {
     $wp_admin_bar->add_menu(
 		array(  
 			'id' => 'custom_menu',
-			'title' => __( 'CNAPPC', 'isadmin' ),
+			'title' => __( 'CNAPPC', 'isar-custom-admin' ),
 			'href' => 'http://www.cnappc.it/', 
 			'meta'  => array(
 				'title' => __('Consiglio Nazionale Architetti'),
@@ -259,7 +259,7 @@ function second_custom_adminbar_menu( $meta = TRUE ) {
     $wp_admin_bar->add_menu(
 		array(
 			'id' => 'second_custom_menu',
-			'title' => __( 'OAPPC', 'isadmin' ),
+			'title' => __( 'OAPPC', 'isar-custom-admin' ),
 			'href' => 'http://www.architettipescara.it/',
 			'meta'  => array(
 				'title' => __('OAPPC della Provincia di Pescara'),
@@ -289,7 +289,7 @@ function remove_footer_admin () {
 add_action('login_head', 'isarch_custom_login_logo');
 function isarch_custom_login_logo() {
 //	echo '<style  type="text/css"> h1 a {  background-image:url(' . get_stylesheet_directory_uri() . '/images/logo-login.png)  !important; } </style>';
-	echo '<style  type="text/css"> h1 a {  background-image:url(' . plugin_dir_url('isadmin') . 'isadmin/images/logo-login.png)  !important; } </style>';
+	echo '<style  type="text/css"> h1 a {  background-image:url(' . plugin_dir_url('isar-custom-admin') . 'isar-custom-admin/images/logo-login.png)  !important; } </style>';
 }
 
 /**
@@ -298,7 +298,7 @@ function isarch_custom_login_logo() {
 add_action('login_head', 'isarch_custom_login_styles');
 function isarch_custom_login_styles() {
 //	echo '<link rel="stylesheet" type="text/css" href="' . get_stylesheet_directory_uri() . '/style-login.css" />';
-	echo '<link rel="stylesheet" type="text/css" href="' . plugin_dir_url('isadmin') . 'isadmin/css/style-login.css" />';
+	echo '<link rel="stylesheet" type="text/css" href="' . plugin_dir_url('isar-custom-admin') . 'isar-custom-admin/css/style-login.css" />';
 }
 
 /**
@@ -324,5 +324,11 @@ function my_addition_to_login_footer() {
 	 </div>
 	 ';
 }
+
+
+
+
+
+
 
 ?>
