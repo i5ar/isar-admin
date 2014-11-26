@@ -1,6 +1,6 @@
 isar-custom-admin
 =======
 
-Just a WordPress plugin developed in order to customize the admin panel.
+Just a WordPress plugin developed in order to customize the admin panel with-in the login page.
 
 > Some files are ignored, please read the .gitignore to understand the main directory scheme.
