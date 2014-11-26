@@ -1,4 +1,4 @@
-isar-costum-admin
+isar-custom-admin
 =======
 
 Just a WordPress plugin developed in order to customize the admin panel.
