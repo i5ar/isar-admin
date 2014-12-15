@@ -2,16 +2,16 @@
 /**
  * Plugin Name: iSar Custom Admin
  * Plugin URI: https://github.com/i5ar/isar-custom-admin
- * Description: Custom Admin styles and contents. Access to plugin panel from the Setting sub-menu.
- * Version: 1.3
- * Author: iSar
+ * Description: Custom Admin styles and snippets designed for iSarch website. Access to plugin panel from the Setting sub-menu Custom Admin.
+ * Version: 1.3.0
+ * Author: Pierpaolo Rasicci
  * Author URI: http://isarch.it/about-me/
  * Text Domain: isar-custom-admin
  * Domain Path: /languages/
- * License: GPL2
+ * License: GPL
  */
  
-/*  Copyright 2014 iSar (email : i5ar.project@gmail.com)
+/*  Copyright 2014 iSar (email: i5ar at live.it)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
