@@ -307,8 +307,8 @@ function remove_footer_admin () {
  */
 add_action('login_head', 'isarch_custom_login_logo');
 function isarch_custom_login_logo() {
-//	echo '<style  type="text/css"> h1 a {  background-image:url(' . get_stylesheet_directory_uri() . '/images/logo-login.png)  !important; } </style>';
-	echo '<style  type="text/css"> h1 a {  background-image:url(' . plugin_dir_url('isar-custom-admin') . 'isar-custom-admin/images/logo-login.png)  !important; } </style>';
+//	echo '<style  type="text/css"> h1 a {  background-image:url(' . get_stylesheet_directory_uri() . '/images/log-isarch.png)  !important; } </style>';
+	echo '<style  type="text/css"> h1 a {  background-image:url(' . plugin_dir_url('isar-custom-admin') . 'isar-custom-admin/images/log-isarch.png)  !important; } </style>';
 }
 
 /**
