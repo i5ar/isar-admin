@@ -3,7 +3,7 @@
  * Plugin Name: iSar Custom Admin
  * Plugin URI: https://github.com/i5ar/isar-custom-admin
  * Description: Custom Admin styles and snippets designed for iSarch website. Access to plugin panel from the Setting sub-menu Custom Admin.
- * Version: 1.3.0
+ * Version: 1.3.1
  * Author: Pierpaolo Rasicci
  * Author URI: http://isarch.it/about-me/
  * Text Domain: isar-custom-admin
@@ -96,14 +96,14 @@ function remove_this_site() {
 add_action( 'wp_before_admin_bar_render', 'custom_admin_bar_edit' );
 function custom_admin_bar_edit() {
     global $wp_admin_bar;
-	$wp_admin_bar->remove_menu('new-content');	// This removes the complete menu “Add New”. You will not require the below “remove_menu” if you using this line.
-	$wp_admin_bar->remove_menu('new-post');		// This (when used individually with other “remove menu” lines removed) will hide the menu item “Post”.
-	$wp_admin_bar->remove_menu('new-page');		// This (when used individually with other “remove menu” lines removed) will hide the menu item “Page”.
-	$wp_admin_bar->remove_menu('new-media');	// This (when used individually with other “remove menu” lines removed) will hide the menu item “Media”.
-	$wp_admin_bar->remove_menu('new-link');		// This (when used individually with other “remove menu” lines removed) will hide the menu item “Link”.
-	$wp_admin_bar->remove_menu('new-user');		// This (when used individually with other “remove menu” lines removed) will hide the menu item “User”.
-	$wp_admin_bar->remove_menu('new-theme');	// This (when used individually with other “remove menu” lines removed) will hide the menu item “Theme”.
-	$wp_admin_bar->remove_menu('new-plugin');	// This (when used individually with other “remove menu” lines removed) will hide the menu item “Plugin”.
+	$wp_admin_bar->remove_menu('new-content');	// Removes the complete menu “Add New”. Don't require the below “remove_menu” if you using this line
+	$wp_admin_bar->remove_menu('new-post');		// When used individually with other “remove_menu” lines removed, will hide the menu item “Post”
+	$wp_admin_bar->remove_menu('new-page');		// When used individually with other “remove_menu” lines removed, will hide the menu item “Page”
+	$wp_admin_bar->remove_menu('new-media');	// When used individually with other “remove_menu” lines removed, will hide the menu item “Media”
+	$wp_admin_bar->remove_menu('new-link');		// When used individually with other “remove_menu” lines removed, will hide the menu item “Link”
+	$wp_admin_bar->remove_menu('new-user');		// When used individually with other “remove_menu” lines removed, will hide the menu item “User”
+	$wp_admin_bar->remove_menu('new-theme');	// When used individually with other “remove_menu” lines removed, will hide the menu item “Theme”
+	$wp_admin_bar->remove_menu('new-plugin');	// When used individually with other “remove_menu” lines removed, will hide the menu item “Plugin”
 }
  */ 
 
@@ -213,18 +213,6 @@ function add_toolbar_items($admin_bar){
 	);
 	$admin_bar->add_menu(
 		array(
-			'id'    => 'my-fiveth-sub-item',
-			'parent' => 'my-item',
-			'title' => 'architetto.info',
-			'href'  => 'http://www.architetto.info/',
-			'meta'  => array(
-				'title' => __('Wolters Kluwer Italia'),
-				'target' => '_blank'
-			),
-		)
-	);
-	$admin_bar->add_menu(
-		array(
 			'id'    => 'my-sixth-sub-item',
 			'parent' => 'my-item',
 			'title' => 'professionearchitetto',
@@ -252,7 +240,7 @@ function add_toolbar_items($admin_bar){
 /**
  * Add a simple menu & link that opens in a new window 
  */
-add_action( 'admin_bar_menu', 'first_custom_adminbar_menu', 15 ); // 10 before logo, 15 between logo and site, 25 after site, 100 end menu
+add_action( 'admin_bar_menu', 'first_custom_adminbar_menu', 15 );
 function first_custom_adminbar_menu( $meta = TRUE ) {  
     global $wp_admin_bar;  
         if ( !is_user_logged_in() ) { return; }  
@@ -312,7 +300,8 @@ function isarch_custom_login_logo() {
 }
 
 /**
- * Add custom Login Page styles - http://premium.wpmudev.org/blog/create-a-custom-wordpress-login-page/
+ * Add custom Login Page styles
+ * @source http://premium.wpmudev.org/blog/create-a-custom-wordpress-login-page/
  */
 add_action('login_head', 'isarch_custom_login_styles');
 function isarch_custom_login_styles() {
@@ -321,7 +310,8 @@ function isarch_custom_login_styles() {
 }
 
 /**
- * Change the Login Logo URL - http://premium.wpmudev.org/blog/create-a-custom-wordpress-login-page/
+ * Change the Login Logo URL
+ * @source http://premium.wpmudev.org/blog/create-a-custom-wordpress-login-page/
  */
 add_filter( 'login_headerurl', 'isarch_login_logo_url' );
 function isarch_login_logo_url() {
@@ -333,7 +323,8 @@ return 'Architetto Penne Pescara';
 }
 
 /**
- * Add another link on the wp-login page - http://wordpress.org/support/topic/adding-another-link-on-the-wp-login-page
+ * Add another link on the wp-login page
+ * @source http://wordpress.org/support/topic/adding-another-link-on-the-wp-login-page
  */
 add_action('login_footer', 'my_addition_to_login_footer');
 function my_addition_to_login_footer() {
@@ -343,11 +334,4 @@ function my_addition_to_login_footer() {
 	 </div>
 	 ';
 }
-
-
-
-
-
-
-
 ?>
