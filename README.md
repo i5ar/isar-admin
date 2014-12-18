@@ -1,4 +1,4 @@
-iSar Custom Admin
+isar-custom-admin
 =================
 
 Just a WordPress admin plugin.
