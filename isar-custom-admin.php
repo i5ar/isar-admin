@@ -96,14 +96,14 @@ function remove_this_site() {
 add_action( 'wp_before_admin_bar_render', 'custom_admin_bar_edit' );
 function custom_admin_bar_edit() {
     global $wp_admin_bar;
-	$wp_admin_bar->remove_menu('new-content');	// Removes the complete menu “Add New”. Don't require the below “remove_menu” if you using this line
-	$wp_admin_bar->remove_menu('new-post');		// When used individually with other “remove_menu” lines removed, will hide the menu item “Post”
-	$wp_admin_bar->remove_menu('new-page');		// When used individually with other “remove_menu” lines removed, will hide the menu item “Page”
-	$wp_admin_bar->remove_menu('new-media');	// When used individually with other “remove_menu” lines removed, will hide the menu item “Media”
-	$wp_admin_bar->remove_menu('new-link');		// When used individually with other “remove_menu” lines removed, will hide the menu item “Link”
-	$wp_admin_bar->remove_menu('new-user');		// When used individually with other “remove_menu” lines removed, will hide the menu item “User”
-	$wp_admin_bar->remove_menu('new-theme');	// When used individually with other “remove_menu” lines removed, will hide the menu item “Theme”
-	$wp_admin_bar->remove_menu('new-plugin');	// When used individually with other “remove_menu” lines removed, will hide the menu item “Plugin”
+	$wp_admin_bar->remove_menu('new-content');	// Removes the complete menu Add New. Don't require the below remove_menu if you using this line
+	$wp_admin_bar->remove_menu('new-post');		// When used individually with other remove_menu lines removed, will hide the menu item Post
+	$wp_admin_bar->remove_menu('new-page');		// When used individually with other remove_menu lines removed, will hide the menu item Page
+	$wp_admin_bar->remove_menu('new-media');	// When used individually with other remove_menu lines removed, will hide the menu item Media
+	$wp_admin_bar->remove_menu('new-link');		// When used individually with other remove_menu lines removed, will hide the menu item Link
+	$wp_admin_bar->remove_menu('new-user');		// When used individually with other remove_menu lines removed, will hide the menu item User
+	$wp_admin_bar->remove_menu('new-theme');	// When used individually with other remove_menu lines removed, will hide the menu item Theme
+	$wp_admin_bar->remove_menu('new-plugin');	// When used individually with other remove_menu lines removed, will hide the menu item Plugin
 }
  */ 
 
@@ -295,13 +295,12 @@ function remove_footer_admin () {
  */
 add_action('login_head', 'isarch_custom_login_logo');
 function isarch_custom_login_logo() {
-//	echo '<style  type="text/css"> h1 a {  background-image:url(' . get_stylesheet_directory_uri() . '/images/log-isarch.png)  !important; } </style>';
-	echo '<style  type="text/css"> h1 a {  background-image:url(' . plugin_dir_url('isar-custom-admin') . 'isar-custom-admin/images/log-isarch.png)  !important; } </style>';
+//	echo '<style  type="text/css"> h1 a {  background-image:url(' . get_stylesheet_directory_uri() . '/images/ch-logo.png)  !important; } </style>';
+	echo '<style  type="text/css"> h1 a {  background-image:url(' . plugin_dir_url('isar-custom-admin') . 'isar-custom-admin/images/ch-logo.png)  !important; } </style>';
 }
 
 /**
  * Add custom Login Page styles
- * @source http://premium.wpmudev.org/blog/create-a-custom-wordpress-login-page/
  */
 add_action('login_head', 'isarch_custom_login_styles');
 function isarch_custom_login_styles() {
@@ -311,7 +310,6 @@ function isarch_custom_login_styles() {
 
 /**
  * Change the Login Logo URL
- * @source http://premium.wpmudev.org/blog/create-a-custom-wordpress-login-page/
  */
 add_filter( 'login_headerurl', 'isarch_login_logo_url' );
 function isarch_login_logo_url() {
