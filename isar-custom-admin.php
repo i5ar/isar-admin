@@ -287,7 +287,7 @@ add_filter( 'show_admin_bar' , 'isar_function_admin_bar');
  */
 add_filter('admin_footer_text', 'remove_footer_admin');
 function remove_footer_admin () {
-    echo '<span id="footer-thankyou">Developed by <a href="' . get_bloginfo( 'wpurl' ) . '/threex.html" target="_blank">iSarDesign</a></span>';
+    echo '<span id="footer-thankyou">Developed by <a href="' . get_bloginfo( 'wpurl' ) . '/three.html" target="_blank">iSarDesign</a></span>';
 }
 
 /**
