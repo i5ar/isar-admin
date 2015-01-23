@@ -17,5 +17,4 @@ ___
 
 *Non men che saver, dubbiar m'aggrata.*
 
-[iSarch]:http://isarch.it
 [functions.php]:http://codex.wordpress.org/Functions_File_Explained
