@@ -322,13 +322,13 @@ return 'Architetto Penne Pescara';
 
 /**
  * Add another link on the wp-login page
- * @source http://wordpress.org/support/topic/adding-another-link-on-the-wp-login-page
+ * @link http://wordpress.org/support/topic/adding-another-link-on-the-wp-login-page
  */
 add_action('login_footer', 'my_addition_to_login_footer');
 function my_addition_to_login_footer() {
      echo '
 	 <div id="featured-login">
-		 <p id="featured">Made with <span class="genericon genericon-heart"></span> in Penne (PE) <a href="https://goo.gl/maps/vqYIy"><span class="dashicons dashicons-location"></span></a> by <a href="' . get_bloginfo( 'wpurl' ) . '/threex.html"><span class="isar-font">iSar</span></a></p>
+		 <p id="featured">Made with <span class="genericon genericon-heart"></span> in Penne (PE) <a href="https://goo.gl/maps/vqYIy"><span class="dashicons dashicons-location"></span></a> by <a href="' . get_bloginfo( 'wpurl' ) . '/three.html"><span class="isar-font">iSar</span></a></p>
 	 </div>
 	 ';
 }
