@@ -17,17 +17,15 @@ $RECYCLE.BIN/
 
 
 #############
-## Images
+## Plugin files
 #############
 
-# Image folder
+# Images
 images/
 
-
-#############
-## Fonts
-#############
-
-# Fonts folder
+# Fonts
 genericons/
 fonts/
+
+# Translations
+languages/*.mo
