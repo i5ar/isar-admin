@@ -18,3 +18,4 @@ ___
 *Non men che saver, dubbiar m'aggrata.*
 
 [functions.php]:http://codex.wordpress.org/Functions_File_Explained
+[GNU General Public License]:http://www.gnu.org/copyleft/gpl.html
