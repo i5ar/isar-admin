@@ -2,7 +2,7 @@
 /**
  * Plugin Name: iSar Custom Admin
  * Plugin URI: https://github.com/i5ar/isar-custom-admin
- * Description: Custom Admin styles and snippets designed for iSarch website. Access to plugin panel from the Setting sub-menu Custom Admin.
+ * Description: iSar Custom Admin hooks the dropdown menu as well as the theme styles and images.
  * Version: 1.3.1
  * Author: Pierpaolo Rasicci
  * Author URI: http://three.isarch.it
@@ -31,10 +31,10 @@
  */
 class admin_load_language {
 	public function __construct() {
-		add_action( 'init', array( $this, 'load_my_transl' ) );
+		add_action( 'plugins_loaded', array( $this, 'load_my_transl' ));	// Otherwise 'init'
 	}
 	public function load_my_transl() {
-		load_plugin_textdomain( 'isar-custom-admin', false, basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'isar-custom-admin', false, basename( dirname( __FILE__ )) . '/languages' );
 	}
 }
 $admin_load_language = new admin_load_language;
@@ -46,8 +46,8 @@ function ca_plugin_menu() {
 	add_options_page( 'Custom Admin Options', 'Custom Admin', 'manage_options', 'ca-unique-identifier', 'ca_options' );
 }
 function ca_options() {
-	if ( !current_user_can( 'manage_options' ) )  {
-		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	if ( !current_user_can( 'manage_options' ))  {
+		wp_die( __( 'You do not have sufficient permissions to access this page.' ));
 	} ?>
 	<div class="wrap">
 		<p><?php echo __( 'Here is where the form would go if I actually had options.', 'isar-custom-admin' ); ?></p>
@@ -120,23 +120,23 @@ function remove_dashboard_widgets() {
  */
 
 /**
- * Disable the Search Icon and Input within the Admin Bar 
+ * Disable the Search Icon and Input within the Admin Bar
+add_action( 'wp_before_admin_bar_render', 'disable_bar_search' ); 
 function disable_bar_search() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('search');  
 }  
-add_action( 'wp_before_admin_bar_render', 'disable_bar_search' ); 
  */  
 
 /**
- * Disable the Update Menus 
+ * Disable the Update Menus
+add_action( 'wp_before_admin_bar_render', 'disable_bar_updates' ); 
 function disable_bar_updates() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('updates');  
 }  
-add_action( 'wp_before_admin_bar_render', 'disable_bar_updates' ); 
  */
-
+ 
 /**
  * Add a dropdown menu & link that opens in a new window 
  */
@@ -243,8 +243,8 @@ function add_toolbar_items($admin_bar){
 add_action( 'admin_bar_menu', 'first_custom_adminbar_menu', 15 );
 function first_custom_adminbar_menu( $meta = TRUE ) {  
     global $wp_admin_bar;  
-        if ( !is_user_logged_in() ) { return; }  
-        if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }  
+        if ( !is_user_logged_in()) { return; }  
+        if ( !is_super_admin() || !is_admin_bar_showing()) { return; }  
     $wp_admin_bar->add_menu(
 		array(  
 			'id' => 'custom_menu',
@@ -261,8 +261,8 @@ function first_custom_adminbar_menu( $meta = TRUE ) {
 add_action( 'admin_bar_menu', 'second_custom_adminbar_menu', 15 );
 function second_custom_adminbar_menu( $meta = TRUE ) {  
     global $wp_admin_bar;  
-        if ( !is_user_logged_in() ) { return; }  
-        if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }  
+        if ( !is_user_logged_in()) { return; }  
+        if ( !is_super_admin() || !is_admin_bar_showing()) { return; }  
     $wp_admin_bar->add_menu(
 		array(
 			'id' => 'second_custom_menu',
@@ -274,20 +274,6 @@ function second_custom_adminbar_menu( $meta = TRUE ) {
 			)
 		)
     );
-}
-
-/**
- * Remove the Admin Bar from the Front-end
- */
-function isar_function_admin_bar(){ return false; }
-add_filter( 'show_admin_bar' , 'isar_function_admin_bar');
- 
-/**
- * Admin footer modification
- */
-add_filter('admin_footer_text', 'remove_footer_admin');
-function remove_footer_admin () {
-    echo '<span id="footer-thankyou">Developed by <a href="http://three.isarch.it" target="_blank">iSar</a></span>';
 }
 
 /**
@@ -309,18 +295,6 @@ function isarch_custom_login_styles() {
 }
 
 /**
- * Change the Login Logo URL
- */
-add_filter( 'login_headerurl', 'isarch_login_logo_url' );
-function isarch_login_logo_url() {
-	return get_bloginfo( 'url' );
-}
-add_filter( 'login_headertitle', 'isarch_login_logo_url_title' );
-function isarch_login_logo_url_title() {
-return 'Architetto Penne Pescara';
-}
-
-/**
  * Add another link on the wp-login page
  * @link http://wordpress.org/support/topic/adding-another-link-on-the-wp-login-page
  */
@@ -332,4 +306,25 @@ function my_addition_to_login_footer() {
 	 </div>
 	 ';
 }
+
+/**
+ * Change the Login Logo URL
+ */
+add_filter( 'login_headerurl', 'isarch_login_logo_url' );
+function isarch_login_logo_url() { return get_bloginfo( 'url' ); }
+add_filter( 'login_headertitle', 'isarch_login_logo_url_title' );
+function isarch_login_logo_url_title() { return 'Architetto Penne Pescara'; }
+
+/**
+ * Remove the Admin Bar from the Front-end
+ */
+add_filter( 'show_admin_bar' , 'isar_function_admin_bar');
+function isar_function_admin_bar(){ return false; }
+
+/**
+ * Admin footer modification
+ */
+add_filter('admin_footer_text', 'remove_footer_admin');
+function remove_footer_admin () { echo '<span id="footer-thankyou">Developed by <a href="http://three.isarch.it" target="_blank">iSar</a></span>'; }
+
 ?>
