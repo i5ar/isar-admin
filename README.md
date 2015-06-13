@@ -7,7 +7,7 @@ Just a WordPress admin plugin.
 
 ### Compatibility
 
-WordPress v4.0.0
+WordPress v4.2.2
 
 ### License
 
