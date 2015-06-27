@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: iSar Custom Admin
- * Plugin URI: https://github.com/i5ar/isar-custom-admin
- * Description: iSar Custom Admin hooks the dropdown menu as well as the theme styles and images.
- * Version: 1.3.1
+ * Plugin Name: iSar Admin
+ * Plugin URI: https://github.com/i5ar/isar-admin
+ * Description: iSar Admin hooks the dropdown menu as well as the theme styles and images.
+ * Version: 1.3.2
  * Author: Pierpaolo Rasicci
  * Author URI: http://three.isarch.it
- * Text Domain: isar-custom-admin
+ * Text Domain: isar-admin
  * Domain Path: /languages/
  * License: GPL
  */
@@ -34,7 +34,7 @@ class admin_load_language {
 		add_action( 'plugins_loaded', array( $this, 'load_my_transl' ));	// Otherwise 'init'
 	}
 	public function load_my_transl() {
-		load_plugin_textdomain( 'isar-custom-admin', false, basename( dirname( __FILE__ )) . '/languages' );
+		load_plugin_textdomain( 'isar-admin', false, basename( dirname( __FILE__ )) . '/languages' );
 	}
 }
 $admin_load_language = new admin_load_language;
@@ -50,8 +50,12 @@ function ca_options() {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ));
 	} ?>
 	<div class="wrap">
-		<p><?php echo __( 'Here is where the form would go if I actually had options.', 'isar-custom-admin' ); ?></p>
-		<p><?php echo __( 'Using this option you will make a fortune!', 'isar-custom-admin' ); ?></p>
+		<h2><?php echo __( 'Snippets', 'isar-admin' ); ?></h2>
+		<p><?php echo __( 'Replace database values in SQL', 'isar-admin' ); ?></p>
+		<pre><code>UPDATE wp_postmeta SET meta_value = REPLACE(meta_value,'Old meta value','New meta value');</code></pre>
+		<hr />
+		<pre><code>UPDATE wp_postmeta SET meta_key = REPLACE(meta_key,'_meta_photo_title_link_key','meta_photo_title_link_key');</code></pre>
+		<hr />
 	</div>
 	<?php
 }
@@ -248,7 +252,7 @@ function first_custom_adminbar_menu( $meta = TRUE ) {
     $wp_admin_bar->add_menu(
 		array(  
 			'id' => 'custom_menu',
-			'title' => __( 'CNAPPC', 'isar-custom-admin' ),
+			'title' => __( 'CNAPPC', 'isar-admin' ),
 			'href' => 'http://www.cnappc.it/', 
 			'meta'  => array(
 				'title' => __('Consiglio Nazionale Architetti'),
@@ -266,7 +270,7 @@ function second_custom_adminbar_menu( $meta = TRUE ) {
     $wp_admin_bar->add_menu(
 		array(
 			'id' => 'second_custom_menu',
-			'title' => __( 'OAPPC', 'isar-custom-admin' ),
+			'title' => __( 'OAPPC', 'isar-admin' ),
 			'href' => 'http://www.architettipescara.it/',
 			'meta'  => array(
 				'title' => __('OAPPC della Provincia di Pescara'),
@@ -282,7 +286,7 @@ function second_custom_adminbar_menu( $meta = TRUE ) {
 add_action('login_head', 'isarch_custom_login_logo');
 function isarch_custom_login_logo() {
 //	echo '<style  type="text/css"> h1 a {  background-image:url(' . get_stylesheet_directory_uri() . '/images/ch-logo.png)  !important; } </style>';
-	echo '<style  type="text/css"> h1 a {  background-image:url(' . plugin_dir_url('isar-custom-admin') . 'isar-custom-admin/images/ch-logo.png)  !important; } </style>';
+	echo '<style  type="text/css"> h1 a {  background-image:url(' . plugin_dir_url('isar-admin') . 'isar-admin/images/ch-logo.png)  !important; } </style>';
 }
 
 /**
@@ -291,7 +295,7 @@ function isarch_custom_login_logo() {
 add_action('login_head', 'isarch_custom_login_styles');
 function isarch_custom_login_styles() {
 //	echo '<link rel="stylesheet" type="text/css" href="' . get_stylesheet_directory_uri() . '/style-login.css" />';
-	echo '<link rel="stylesheet" type="text/css" href="' . plugin_dir_url('isar-custom-admin') . 'isar-custom-admin/css/style-login.css" />';
+	echo '<link rel="stylesheet" type="text/css" href="' . plugin_dir_url('isar-admin') . 'isar-admin/css/style-login.css" />';
 }
 
 /**
