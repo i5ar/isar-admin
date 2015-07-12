@@ -5,7 +5,7 @@
  * Description: iSar Admin hooks the dropdown menu as well as the theme styles and images.
  * Version: 1.3.2
  * Author: Pierpaolo Rasicci
- * Author URI: http://three.isarch.it
+ * Author URI: http://c.isarch.it
  * Text Domain: isar-admin
  * Domain Path: /languages/
  * License: GPL
