@@ -306,7 +306,7 @@ add_action('login_footer', 'my_addition_to_login_footer');
 function my_addition_to_login_footer() {
      echo '
 	 <div id="featured-login">
-		 <p id="featured">Made with <span class="genericon genericon-heart"></span> in Penne (PE) <a href="https://goo.gl/maps/vqYIy"><span class="dashicons dashicons-location"></span></a> by <a href="http://three.isarch.it"><span class="isar-font">iSar</span></a></p>
+		 <p id="featured">Made with <span class="genericon genericon-heart"></span> in Penne (PE) <a href="https://goo.gl/maps/vqYIy"><span class="dashicons dashicons-location"></span></a> by <a href="http://c.isarch.it"><span class="isar-font">iSar</span></a></p>
 	 </div>
 	 ';
 }
@@ -329,6 +329,6 @@ function isar_function_admin_bar(){ return false; }
  * Admin footer modification
  */
 add_filter('admin_footer_text', 'remove_footer_admin');
-function remove_footer_admin () { echo '<span id="footer-thankyou">Developed by <a href="http://three.isarch.it" target="_blank">iSar</a></span>'; }
+function remove_footer_admin () { echo '<span id="footer-thankyou">Developed by <a href="http://c.isarch.it" target="_blank">iSar</a></span>'; }
 
 ?>
