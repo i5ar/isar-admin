@@ -43,7 +43,7 @@ $admin_load_language = new admin_load_language;
  */
 add_action( 'admin_menu', 'ca_plugin_menu' );
 function ca_plugin_menu() {
-	add_options_page( 'Custom Admin Options', 'Custom Admin', 'manage_options', 'ca-unique-identifier', 'ca_options' );
+	add_options_page( 'iSar Admin Options', 'iSar Admin', 'manage_options', 'ca-unique-identifier', 'ca_options' );
 }
 function ca_options() {
 	if ( !current_user_can( 'manage_options' ))  {
@@ -54,9 +54,7 @@ function ca_options() {
 		<p><?php echo __( 'Replace database values in SQL', 'isar-admin' ); ?></p>
 		<pre><code>UPDATE wp_postmeta SET meta_value = REPLACE(meta_value,'Old meta value','New meta value');</code></pre>
 		<hr />
-		<pre><code>UPDATE wp_postmeta SET meta_key = REPLACE(meta_key,'_meta_photo_title_link_key','meta_photo_title_link_key');</code></pre>
-		<hr />
-	</div>
+		</div>
 	<?php
 }
 /**
@@ -65,7 +63,7 @@ add_action( 'wp_before_admin_bar_render', 'remove_wp_logo' );
 function remove_wp_logo() {  
     global $wp_admin_bar;  
     $wp_admin_bar->remove_menu('wp-logo');  
-}  
+}
  */
 
 /** 
